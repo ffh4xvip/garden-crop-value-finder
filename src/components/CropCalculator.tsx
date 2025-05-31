@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -148,12 +147,6 @@ const CropCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">🌾 Crop Value Calculator</h1>
-          <p className="text-slate-300">Calculate the value of your mutated crops</p>
-        </div>
-
         {/* Main Grid */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Left Column - Crop & Base Value */}
@@ -189,24 +182,6 @@ const CropCalculator = () => {
                   onChange={(e) => setCustomValue(e.target.value)}
                   className="h-12 text-lg bg-slate-700 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400"
                 />
-              </CardContent>
-            </Card>
-
-            {/* Result Card */}
-            <Card className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-700/50 backdrop-blur-sm">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-white flex items-center gap-2">
-                  🧮 Total Value
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="flex items-center justify-center gap-3 mb-3">
-                  <span className="text-4xl">🪙</span>
-                  <span className="text-4xl font-bold text-blue-300">{formatNumber(calculateValue())}</span>
-                </div>
-                <div className="text-slate-300 text-sm">
-                  Total Multiplier: <span className="text-blue-300 font-semibold">{getTotalMultiplier()}x</span>
-                </div>
               </CardContent>
             </Card>
           </div>
@@ -298,6 +273,25 @@ const CropCalculator = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Result Card - Moved to Bottom */}
+        <div className="mt-6">
+          <Card className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-700/50 backdrop-blur-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-white flex items-center gap-2">
+                🧮 Total Value
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <span className="text-4xl font-bold text-white">{formatNumber(calculateValue())}</span>
+              </div>
+              <div className="text-slate-300 text-sm">
+                Total Multiplier: <span className="text-blue-300 font-semibold">{getTotalMultiplier()}x</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
