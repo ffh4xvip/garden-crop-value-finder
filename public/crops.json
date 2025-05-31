@@ -1,0 +1,45 @@
+
+{
+  "crops": [
+    {
+      "name": "Basic Fruit",
+      "value": 1
+    },
+    {
+      "name": "Apple",
+      "value": 5
+    },
+    {
+      "name": "Orange",
+      "value": 10
+    },
+    {
+      "name": "Banana",
+      "value": 25
+    },
+    {
+      "name": "Grapes",
+      "value": 50
+    },
+    {
+      "name": "Strawberry",
+      "value": 100
+    },
+    {
+      "name": "Watermelon",
+      "value": 250
+    },
+    {
+      "name": "Pineapple",
+      "value": 500
+    },
+    {
+      "name": "Mango",
+      "value": 1000
+    },
+    {
+      "name": "Dragon Fruit",
+      "value": 2500
+    }
+  ]
+}
