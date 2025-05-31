@@ -34,7 +34,7 @@ const CropCalculator = () => {
   const [selectedCrop, setSelectedCrop] = useState<Crop | null>(null);
   const [growthMutation, setGrowthMutation] = useState<string>('none');
   const [temperatureMutation, setTemperatureMutation] = useState<string>('none');
-  const [environmentalMutations, setEnvironmentalMutations] = useState<string[]>([]);
+  const [selectedEnvironmentalMutations, setSelectedEnvironmentalMutations] = useState<string[]>([]);
 
   const growthMutations: GrowthMutation[] = [
     { name: 'none', emoji: '', multiplier: 1 },
@@ -52,7 +52,7 @@ const CropCalculator = () => {
     { name: 'frozen', emoji: '❄️', multiplier: 5 }
   ];
 
-  const environmentalMutations: EnvironmentalMutation[] = [
+  const environmentalMutationOptions: EnvironmentalMutation[] = [
     { name: 'chocolate', emoji: '🍫', multiplier: 10 },
     { name: 'moonlit', emoji: '🌙', multiplier: 15 },
     { name: 'glowing', emoji: '💡', multiplier: 8 },
@@ -81,10 +81,10 @@ const CropCalculator = () => {
     const growthMultiplier = growthMutations.find(m => m.name === growthMutation)?.multiplier || 1;
     const temperatureMultiplier = temperatureMutations.find(m => m.name === temperatureMutation)?.multiplier || 1;
     
-    const environmentalMultiplier = environmentalMutations.reduce((total, mutationName) => {
-      const mutation = environmentalMutations.find(m => m.name === mutationName);
+    const environmentalMultiplier = selectedEnvironmentalMutations.reduce((total, mutationName) => {
+      const mutation = environmentalMutationOptions.find(m => m.name === mutationName);
       return total + (mutation?.multiplier || 0);
-    }, environmentalMutations.length > 0 ? 0 : 1);
+    }, selectedEnvironmentalMutations.length > 0 ? 0 : 1);
 
     return baseValue * growthMultiplier * temperatureMultiplier * (environmentalMultiplier || 1);
   };
@@ -95,9 +95,9 @@ const CropCalculator = () => {
 
   const handleEnvironmentalChange = (mutationName: string, checked: boolean) => {
     if (checked) {
-      setEnvironmentalMutations([...environmentalMutations, mutationName]);
+      setSelectedEnvironmentalMutations([...selectedEnvironmentalMutations, mutationName]);
     } else {
-      setEnvironmentalMutations(environmentalMutations.filter(m => m !== mutationName));
+      setSelectedEnvironmentalMutations(selectedEnvironmentalMutations.filter(m => m !== mutationName));
     }
   };
 
@@ -220,11 +220,11 @@ const CropCalculator = () => {
               </CardHeader>
               <CardContent className="p-6">
                 <div className="space-y-3">
-                  {environmentalMutations.map((mutation) => (
+                  {environmentalMutationOptions.map((mutation) => (
                     <div key={mutation.name} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-purple-50 transition-colors">
                       <Checkbox
                         id={`env-${mutation.name}`}
-                        checked={environmentalMutations.includes(mutation.name)}
+                        checked={selectedEnvironmentalMutations.includes(mutation.name)}
                         onCheckedChange={(checked) => handleEnvironmentalChange(mutation.name, checked as boolean)}
                         className="border-purple-400"
                       />
